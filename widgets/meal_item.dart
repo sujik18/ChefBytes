@@ -1,3 +1,4 @@
+import 'package:chef_bytes/widgets/meal_item_char.dart';
 import 'package:flutter/material.dart';
 import 'package:chef_bytes/models/meal.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -6,8 +7,29 @@ class MealItem extends StatelessWidget {
   const MealItem({
     super.key,
     required this.meal,
+    required this.onSelectMeal,
   });
   final Meal meal;
+  final void Function(Meal m) onSelectMeal; 
+
+  String get complexityText {
+    switch (meal.complexity) {
+      case Complexity.simple:
+        return 'Simple';
+      case Complexity.challenging:
+        return 'Challenging';
+      case Complexity.hard:
+        return 'Hard';
+      default:
+        return 'Unknown';
+    }
+  }
+
+  String get affordabilityText {
+    return meal.affordability.name[0].toUpperCase() +
+        meal.affordability.name.substring(1);
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +41,9 @@ class MealItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          onSelectMeal(meal);
+        },
         child: Stack(
           children: [
             FadeInImage(
@@ -59,6 +83,26 @@ class MealItem extends StatelessWidget {
                       softWrap: true,
                       overflow: TextOverflow.ellipsis, //very long text
                     ),
+                    const SizedBox(height: 5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        MealItemChar(
+                          icon: Icons.schedule,
+                          label: '${meal.duration} min',
+                        ),
+                        const SizedBox(height: 15),
+                        MealItemChar(
+                          icon: Icons.work,
+                          label:
+                              complexityText, //'$complexityText ' also was fine
+                        ),
+                        MealItemChar(
+                          icon: Icons.attach_money,
+                          label: affordabilityText,
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

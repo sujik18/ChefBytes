@@ -99,7 +99,7 @@ const dummyMeals = [
     affordability: Affordability.affordable,
     complexity: Complexity.simple,
     imageUrl:
-        'https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg',
+        'https://th.bing.com/th/id/OIP.cx1cWBCyLrtLuGiiY0JaagHaE7?rs=1&pid=ImgDetMain',
     duration: 10,
     ingredients: [
       '1 Slice White Bread',
@@ -128,7 +128,7 @@ const dummyMeals = [
     affordability: Affordability.pricey,
     complexity: Complexity.simple,
     imageUrl:
-        'https://cdn.pixabay.com/photo/2014/10/23/18/05/burger-500054_1280.jpg',
+        'https://th.bing.com/th/id/OIP.n-x0aGScXztEGuUuN356nQHaE8?w=251&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
     duration: 45,
     ingredients: [
       '300g Cattle Hack',
