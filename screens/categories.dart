@@ -6,9 +6,9 @@ import 'package:chef_bytes/data/dummy_data.dart';
 import 'package:chef_bytes/widgets/category_grid_item.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key, required this.onToggleFavorite, required this.availableMeals});
+  const CategoriesScreen({super.key,  required this.availableMeals});
   
-  final void Function(Meal meal) onToggleFavorite; 
+  //final void Function(Meal meal) onToggleFavorite; 
   final List<Meal> availableMeals;
 
   void _selectCategory(BuildContext ctx, Category cat) {
@@ -21,7 +21,7 @@ class CategoriesScreen extends StatelessWidget {
         builder: (ctx) => MealsScreen(
           title: cat.title,
           meals: filteredMeals,
-          onToggleFavoriteFunctionFrwd: onToggleFavorite,
+         // onToggleFavoriteFunctionFrwd: onToggleFavorite,
         ),
       ),
     );

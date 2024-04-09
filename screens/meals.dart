@@ -8,11 +8,11 @@ class MealsScreen extends StatelessWidget {
     super.key,
     this.title,
     required this.meals,
-    required this.onToggleFavoriteFunctionFrwd,
+    //required this.onToggleFavoriteFunctionFrwd,
   });
   final String? title;  //can be null
   final List<Meal> meals; // list of meal of type meal which is a model class
-  final void Function(Meal meal) onToggleFavoriteFunctionFrwd;
+  //final void Function(Meal meal) onToggleFavoriteFunctionFrwd;
 
   void selectMeal(BuildContext ctx, Meal meal) {
     
@@ -20,7 +20,7 @@ class MealsScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (ctx) => MealDetails(
           meal: meal,
-          onToggleFavorite: onToggleFavoriteFunctionFrwd,
+          //onToggleFavorite: onToggleFavoriteFunctionFrwd,
         ),
       ),
     );
