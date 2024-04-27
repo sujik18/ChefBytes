@@ -1,6 +1,6 @@
 import 'package:chef_bytes/models/meal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:chef_bytes/providers/meals_provider.dart';
+
 
 class FavoritesNotifier extends StateNotifier<List<Meal>> {
   //final Reader _read;

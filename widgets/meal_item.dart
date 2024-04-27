@@ -46,15 +46,17 @@ class MealItem extends StatelessWidget {
         },
         child: Stack(
           children: [
-            FadeInImage(
-                // to show a placeholder image while the actual image is loading
-                placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(meal.imageUrl),
-                fit: BoxFit.cover, //to fit the image
-                height: 200,
-                width: double.infinity //to take the full width of the card
-
-                ),
+            Hero(
+              tag: meal.id, //unique per widget
+              child: FadeInImage(
+                  // to show a placeholder image while the actual image is loading
+                  placeholder: MemoryImage(kTransparentImage),
+                  image: NetworkImage(meal.imageUrl),
+                  fit: BoxFit.cover, //to fit the image
+                  height: 200,
+                  width: double.infinity //to take the full width of the card
+                  ),
+            ),
             Positioned(
               bottom: 0,
               left: 0, // start 0px from the left of the above widget

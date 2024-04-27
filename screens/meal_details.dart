@@ -7,7 +7,7 @@ class MealDetails extends ConsumerWidget {
   const MealDetails({
     super.key,
     required this.meal,
-   // required this.onToggleFavorite,
+    // required this.onToggleFavorite,
   });
 
   final Meal meal;
@@ -17,33 +17,54 @@ class MealDetails extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final favoriteMeals = ref.watch(favoriteMealsProvider);
     final isfav = favoriteMeals.contains(meal);
-    
+
     return Scaffold(
         appBar: AppBar(
           title: Text(meal.title),
           actions: [
             IconButton(
-                onPressed: () {
-                  //onToggleFavorite(meal);
-                  final wasAdded = ref.read(favoriteMealsProvider.notifier).toggleMealFavorite(meal); //read the value once
-                   ScaffoldMessenger.of(context).clearSnackBars();
-                   ScaffoldMessenger.of(context).showSnackBar(
-                   SnackBar(
-                        content: Text(wasAdded==true ? 'Meal added as favorite.' : 'Meal remved'),
-                        duration: const Duration(seconds: 2),
-                    ),
-    );
+              onPressed: () {
+                //onToggleFavorite(meal);
+                final wasAdded = ref
+                    .read(favoriteMealsProvider.notifier)
+                    .toggleMealFavorite(meal); //read the value once
+                ScaffoldMessenger.of(context).clearSnackBars();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(wasAdded == true
+                        ? 'Meal added as favorite.'
+                        : 'Meal remved'),
+                    duration: const Duration(seconds: 2),
+                  ),
+                );
+              },
+              //Implicit animation
+              icon: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) {
+                  return RotationTransition(
+                    turns: Tween(begin: 0.5, end: 1.0).animate(animation),
+                    child: child,
+                  );
                 },
-                icon: Icon(isfav ? Icons.favorite : Icons.favorite_border ))
+                child: Icon(
+                  isfav ? Icons.favorite : Icons.favorite_border,
+                  key: ValueKey(isfav),
+                ),
+              ),
+            ),
           ],
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Image.network(
-                meal.imageUrl,
-                width: double.infinity,
-                fit: BoxFit.cover,
+              Hero(
+                tag: meal.id,
+                child: Image.network(
+                  meal.imageUrl,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
               const SizedBox(height: 10),
               Text(
